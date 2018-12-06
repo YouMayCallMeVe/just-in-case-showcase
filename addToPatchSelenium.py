@@ -49,7 +49,7 @@ def waitForLoadXPATHHidden(path, x, driver):
 
 #print(googleExport.getValues())
 def run(items):
-  driver = webdriver.Chrome("/app/chromedriver.exe")
+  driver = webdriver.Chrome("/app/chromedriver")
   driver.get('https://mcriss-cdsdev.appiancloud.com/suite/design/lQBY7b8XyEG3sHPiDxlu8ZrV8LENAU_SQ5oJCUwg_freLRs2IulV4fLo--rXPlSQnPvVn5G5ay5rLhFVaH_juNa3rlpvXP4eG-1dzZZJpGoHs2L5LQ')
   username = driver.find_element_by_id('un')
   username.send_keys("bdumont@chenega.com")
