@@ -1,13 +1,19 @@
-from flask import Flask, request
 import json
+import googleExport
+import addToPatchSelenium
 
-app = Flask(__name__)
+def js_r(filename):
+   with open(filename) as f_in:
+       return(json.load(f_in))
 
-@app.route('/',methods=['POST'])
-def foo():
-   data = json.loads(request.data)
-   print ("New commit by: {}".format(data['commits'][0]['author']['name']))
-   return ("OK")
-
-if __name__ == '__main__':
-   app.run()
+if __name__ == "__main__":
+    data = js_r('sampleResponse.json')
+    emailAddress = data["user"]["emailAddress"]
+    issue = data["issue"]["key"]
+    components = googleExport.getValues()
+    issue = "MR-2264"
+    itemsToAdd = []
+    for row in components:
+    	if row[1] == issue:
+    		itemsToAdd.append(row[0])
+    addToPatchSelenium.run(itemsToAdd)
