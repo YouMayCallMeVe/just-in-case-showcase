@@ -58,7 +58,7 @@ def run(items):
   options.add_argument('--disable-gpu')
   driver = webdriver.Chrome("/home/bdumont/just-in-case-showcase/chromedriver", chrome_options=options)
   driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
-  params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "/home/bdumont/just-in-case-showcase"}}  
+  params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "/home/bdumont/just-in-case-showcase/"}}  
   command_result = driver.execute("send_command", params)
   print("response from browser:")
   for key in command_result: 
@@ -100,12 +100,13 @@ def run(items):
   export.click()
   waitForLoadXPATH('//*[contains(text(), "Clear Patch Contents")]', driver)
   export = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[3]/div/div/div[2]/div/div/button')
+  title = driver.find_element_by_id('3f23c4a9cbddae8d379f2de2f5b9157f')
+  title.clear()
+  title.send_keys("MR-2555")
   export.click()
   waitForLoadXPATH('//*[contains(text(), "Download package")]', driver)
-  export = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/p/a')
-  export.click()
-  print("Clicked Download")
-  driver.save_screenshot('screenie.png')  
+  clear = driver.find_element_by_xpath('//*[contains(text(), "Close")]')
+  clear.click()
   time.sleep(15)
 
 

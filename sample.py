@@ -11,7 +11,7 @@ if __name__ == "__main__":
     emailAddress = data["user"]["emailAddress"]
     issue = data["issue"]["key"]
     components = googleExport.getValues()
-    issue = "MR-2264"
+    issue = "MR-1794"
     itemsToAdd = []
     for row in components:
     	if row[1] == issue:
