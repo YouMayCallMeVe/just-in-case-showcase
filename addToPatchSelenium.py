@@ -52,6 +52,7 @@ def waitForLoadXPATHHidden(path, x, driver):
 def run(items):
   options = Options()
   options.add_argument('--headless')
+  options.add_argument('--disable-popup-blocking')
   options.add_argument('--disable-gpu')
   driver = webdriver.Chrome("/home/bdumont/just-in-case-showcase/chromedriver", chrome_options=options)
   driver.get('https://mcriss-cdsdev.appiancloud.com/suite/design/lQBY7b8XyEG3sHPiDxlu8ZrV8LENAU_SQ5oJCUwg_freLRs2IulV4fLo--rXPlSQnPvVn5G5ay5rLhFVaH_juNa3rlpvXP4eG-1dzZZJpGoHs2L5LQ')
@@ -93,9 +94,10 @@ def run(items):
   export = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[3]/div/div/div[2]/div/div/button')
   export.click()
   waitForLoadXPATH('//*[contains(text(), "Download package")]', driver)
-  driver.save_screenshot('screenie.png')
   export = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/p/a')
   export.click()
+  print("Clicked Download")
+  driver.save_screenshot('screenie.png')  
   time.sleep(15)
 
 
