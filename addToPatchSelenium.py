@@ -49,7 +49,7 @@ def waitForLoadXPATHHidden(path, x, driver):
       print("The item is gone now")
 
 #print(googleExport.getValues())
-def run(items):
+def run(items, issue):
   options = Options()
   prefs = {'download.default_directory': "/home/bdumont/just-in-case-showcase",'download.prompt_for_download': False,'download.directory_upgrade': True,'safebrowsing.enabled': False,'safebrowsing.disable_download_protection': True}
   options.add_experimental_option('prefs', prefs)
@@ -102,10 +102,16 @@ def run(items):
   export = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[3]/div/div/div[2]/div/div/button')
   title = driver.find_element_by_id('3f23c4a9cbddae8d379f2de2f5b9157f')
   title.clear()
-  title.send_keys("MR-2555")
+  title.send_keys(issue)
   export.click()
   waitForLoadXPATH('//*[contains(text(), "Download package")]', driver)
-  clear = driver.find_element_by_xpath('//*[contains(text(), "Close")]')
+  close = driver.find_element_by_xpath('//*[contains(text(), "Close")]')
+  close.click()
+  waitForLoadXPATH('//*[contains(text(), "Export Patch")]', driver)
+  export = driver.find_element_by_xpath('//*[contains(text(), "Export Patch")]')
+  export.click()
+  waitForLoadXPATH('//*[contains(text(), "Clear Patch Contents")]', driver)
+  clear = driver.find_element_by_xpath('//*[contains(text(), "Clear Patch Contents")]')
   clear.click()
   time.sleep(15)
 

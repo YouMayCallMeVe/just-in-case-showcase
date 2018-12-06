@@ -16,4 +16,4 @@ if __name__ == "__main__":
     for row in components:
     	if row[1] == issue:
     		itemsToAdd.append(row[0])
-    addToPatchSelenium.run(itemsToAdd)
+    addToPatchSelenium.run(itemsToAdd, issue)
