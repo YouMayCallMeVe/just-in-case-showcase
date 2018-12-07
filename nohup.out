@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "/home/bdumont/just-in-case-showcase/sample.py", line 19, in <module>
+    addToPatchSelenium.run(itemsToAdd, issue)
+  File "/home/bdumont/just-in-case-showcase/addToPatchSelenium.py", line 59, in run
+    driver = webdriver.Chrome("/home/bdumont/just-in-case-showcase/chromedriver", chrome_options=options)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/chrome/webdriver.py", line 81, in __init__
+    desired_capabilities=desired_capabilities)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: Chrome failed to start: exited abnormally
+  (unknown error: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+  (Driver info: chromedriver=2.44.609551 (5d576e9a44fe4c5b6a07e568f1ebc753f1214634),platform=Linux 3.10.0-862.11.6.el7.x86_64 x86_64)
+
+Traceback (most recent call last):
+  File "/home/bdumont/just-in-case-showcase/sample.py", line 19, in <module>
+    addToPatchSelenium.run(itemsToAdd, issue)
+  File "/home/bdumont/just-in-case-showcase/addToPatchSelenium.py", line 59, in run
+    driver = webdriver.Chrome("/home/bdumont/just-in-case-showcase/chromedriver", chrome_options=options)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/chrome/webdriver.py", line 81, in __init__
+    desired_capabilities=desired_capabilities)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/usr/lib/python2.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: Chrome failed to start: exited abnormally
+  (unknown error: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+  (Driver info: chromedriver=2.44.609551 (5d576e9a44fe4c5b6a07e568f1ebc753f1214634),platform=Linux 3.10.0-862.11.6.el7.x86_64 x86_64)
+
