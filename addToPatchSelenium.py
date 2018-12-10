@@ -106,6 +106,9 @@ def run(items, issue):
   export.click()
   waitForLoadXPATH('//*[contains(text(), "Download package")]', driver)
   close = driver.find_element_by_xpath('//*[contains(text(), "Close")]')
+  link = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/p/a')
+  url = link.get_attribute("href")
+  print(url)
   close.click()
   #waitForLoadXPATH('//*[contains(text(), "Export Patch")]', driver)
   time.sleep(15)
@@ -115,6 +118,7 @@ def run(items, issue):
   clear = driver.find_element_by_xpath('//*[contains(text(), "Clear Patch Contents")]')
   clear.click()
   time.sleep(15)
+  driver.get(url)
 
 
   
