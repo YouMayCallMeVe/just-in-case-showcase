@@ -51,14 +51,14 @@ def waitForLoadXPATHHidden(path, x, driver):
 #print(googleExport.getValues())
 def run(items, issue):
   options = Options()
-  prefs = {'download.default_directory': "/c/Users/Administrator/just-in-case-showcase/",'download.prompt_for_download': False,'download.directory_upgrade': True,'safebrowsing.enabled': False,'safebrowsing.disable_download_protection': True}
+  prefs = {'download.default_directory': "C:/Users/Administrator/Downloads",'download.prompt_for_download': False,'download.directory_upgrade': True,'safebrowsing.enabled': False,'safebrowsing.disable_download_protection': True}
   options.add_experimental_option('prefs', prefs)
-  options.add_argument('--headless')
+  #options.add_argument('--headless')
   options.add_argument('--disable-popup-blocking')
   options.add_argument('--disable-gpu')
-  driver = webdriver.Chrome("/c/Users/Administrator/just-in-case-showcase/chromedriver.exe", chrome_options=options)
+  driver = webdriver.Chrome("C:/Users/Administrator/just-in-case-showcase/chromedriver.exe", chrome_options=options)
   driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
-  params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "/c/Users/Administrator/just-in-case-showcase/"}}  
+  params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "C:/Users/Administrator/Downloads"}}  
   command_result = driver.execute("send_command", params)
   print("response from browser:")
   for key in command_result: 
@@ -69,7 +69,7 @@ def run(items, issue):
   password = driver.find_element_by_id('pw')
   password.send_keys("BSwimmer15!!")
   submit = driver.find_element_by_xpath('//input[@type="submit" and @value="Sign In"]')
-  submit.click()
+  submit.click()C:/Users/Administrator/Downloads
   waitForLoadId('a23ae63c8846e3f0f41f8a50e77f07b8', driver)
 
   # for each user story 
@@ -109,6 +109,8 @@ def run(items, issue):
   link = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/p/a')
   url = link.get_attribute("href")
   print(url)
+  #driver.get(url)
+  time.sleep(10)
   close.click()
   #waitForLoadXPATH('//*[contains(text(), "Export Patch")]', driver)
   time.sleep(15)
@@ -117,10 +119,9 @@ def run(items, issue):
   waitForLoadXPATH('//*[contains(text(), "Clear Patch Contents")]', driver)
   clear = driver.find_element_by_xpath('//*[contains(text(), "Clear Patch Contents")]')
   clear.click()
-  time.sleep(15)
-  driver.get(url)
-
-
+  
+  # SEND EMAIL TO DEVELOPER
+  
   
 
   
