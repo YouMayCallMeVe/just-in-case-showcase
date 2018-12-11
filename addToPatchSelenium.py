@@ -51,14 +51,14 @@ def waitForLoadXPATHHidden(path, x, driver):
 #print(googleExport.getValues())
 def run(items, issue):
   options = Options()
-  prefs = {'download.default_directory': "/app",'download.prompt_for_download': False,'download.directory_upgrade': True,'safebrowsing.enabled': False,'safebrowsing.disable_download_protection': True}
+  prefs = {'download.default_directory': "/c/Users/Administrator/just-in-case-showcase/",'download.prompt_for_download': False,'download.directory_upgrade': True,'safebrowsing.enabled': False,'safebrowsing.disable_download_protection': True}
   options.add_experimental_option('prefs', prefs)
   options.add_argument('--headless')
   options.add_argument('--disable-popup-blocking')
   options.add_argument('--disable-gpu')
-  driver = webdriver.Chrome("/app/chromedriver", chrome_options=options)
+  driver = webdriver.Chrome("/c/Users/Administrator/just-in-case-showcase/chromedriver.exe", chrome_options=options)
   driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
-  params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "/app/"}}  
+  params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "/c/Users/Administrator/just-in-case-showcase/"}}  
   command_result = driver.execute("send_command", params)
   print("response from browser:")
   for key in command_result: 
