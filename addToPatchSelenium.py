@@ -62,9 +62,9 @@ def run(items, issue, email):
   driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
   #params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "C:/Users/bdumont/Desktop/git repos/just-in-case-showcase"}}  
   #command_result = driver.execute("send_command", params)
-  print("response from browser:")
-  for key in command_result: 
-    print("result:" + key + ":" + str(command_result[key]))
+  #print("response from browser:")
+  #for key in command_result: 
+    #print("result:" + key + ":" + str(command_result[key]))
   driver.get('https://mcriss-cdsdev.appiancloud.com/suite/design/lQBY7b8XyEG3sHPiDxlu8ZrV8LENAU_SQ5oJCUwg_freLRs2IulV4fLo--rXPlSQnPvVn5G5ay5rLhFVaH_juNa3rlpvXP4eG-1dzZZJpGoHs2L5LQ')
   username = driver.find_element_by_id('un')
   username.send_keys("bdumont@chenega.com")
