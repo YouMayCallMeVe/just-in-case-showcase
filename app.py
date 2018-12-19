@@ -16,7 +16,7 @@ def foo():
   for row in components:
     if row[1] == issue:
       itemsToAdd.append(row[0])
-  addToPatchSelenium.run(itemsToAdd, issue)
+  addToPatchSelenium.run(itemsToAdd, issue, emailAddress)
 
 if __name__ == '__main__':
    app.run()

@@ -8,6 +8,7 @@ import time
 import os
 import sys
 import googleExport
+import smtplib
 
 def waitForLoadId(itemId, driver):
   DELAY = 60
@@ -49,16 +50,17 @@ def waitForLoadXPATHHidden(path, x, driver):
       print("The item is gone now")
 
 #print(googleExport.getValues())
-def run(items, issue):
+def run(items, issue, email):
+  
   options = Options()
-  prefs = {'download.default_directory': "C:/Users/Administrator/Downloads",'download.prompt_for_download': False,'download.directory_upgrade': True,'safebrowsing.enabled': False,'safebrowsing.disable_download_protection': True}
+  #prefs = {'download.default_directory': "C:/Users/bdumont/Desktop/git repos/just-in-case-showcase",'download.prompt_for_download': False,'download.directory_upgrade': True,'safebrowsing.enabled': False,'safebrowsing.disable_download_protection': True}
   options.add_experimental_option('prefs', prefs)
-  #options.add_argument('--headless')
+  options.add_argument('--headless')
   options.add_argument('--disable-popup-blocking')
   options.add_argument('--disable-gpu')
-  driver = webdriver.Chrome("C:/Users/Administrator/just-in-case-showcase/chromedriver.exe", chrome_options=options)
+  driver = webdriver.Chrome("chromedriver", chrome_options=options)
   driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
-  params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "C:/Users/Administrator/Downloads"}}  
+  #params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "C:/Users/bdumont/Desktop/git repos/just-in-case-showcase"}}  
   command_result = driver.execute("send_command", params)
   print("response from browser:")
   for key in command_result: 
@@ -69,7 +71,7 @@ def run(items, issue):
   password = driver.find_element_by_id('pw')
   password.send_keys("BSwimmer15!!")
   submit = driver.find_element_by_xpath('//input[@type="submit" and @value="Sign In"]')
-  submit.click()C:/Users/Administrator/Downloads
+  submit.click()
   waitForLoadId('a23ae63c8846e3f0f41f8a50e77f07b8', driver)
 
   # for each user story 
@@ -119,9 +121,32 @@ def run(items, issue):
   waitForLoadXPATH('//*[contains(text(), "Clear Patch Contents")]', driver)
   clear = driver.find_element_by_xpath('//*[contains(text(), "Clear Patch Contents")]')
   clear.click()
-  
+
   # SEND EMAIL TO DEVELOPER
-  
-  
+  TO = email
+  SUBJECT = issue
+  TEXT = url
+
+  # Gmail Sign In
+  gmail_sender = 'chenegaautomation@gmail.com'
+  gmail_passwd = 'ChenegaAuto'
+
+  server = smtplib.SMTP('smtp.gmail.com', 587)
+  server.ehlo()
+  server.starttls()
+  server.login(gmail_sender, gmail_passwd)
+
+  BODY = '\r\n'.join(['To: %s' % TO,
+                      'From: %s' % gmail_sender,
+                      'Subject: %s' % SUBJECT,
+                      '', TEXT])
+
+  try:
+      server.sendmail(gmail_sender, [TO], BODY)
+      print ('email sent')
+  except:
+      print ('error sending mail')
+
+  server.quit()
 
   

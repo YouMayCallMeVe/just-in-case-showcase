@@ -11,9 +11,9 @@ if __name__ == "__main__":
     emailAddress = data["user"]["emailAddress"]
     issue = data["issue"]["key"]
     components = googleExport.getValues()
-    issue = "MR-1794"
+    issue = "MR-1588"
     itemsToAdd = []
     for row in components:
     	if row[1] == issue:
     		itemsToAdd.append(row[0])
-    addToPatchSelenium.run(itemsToAdd, issue)
+    addToPatchSelenium.run(itemsToAdd, issue, emailAddress)
