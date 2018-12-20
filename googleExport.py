@@ -2,9 +2,11 @@ from __future__ import print_function
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
+from jira import JIRA
 
 # If modifying these scopes, delete the file token.json.
-def getValues():
+def getValues(key):
+    '''
     SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
     # The ID and range of a sample spreadsheet.
     SAMPLE_SPREADSHEET_ID = '1eUE-Zzq5PpBWvYEQvWmllrBM3MWwPcXq4t7ZP4LttJo'
@@ -35,3 +37,9 @@ def getValues():
         for row in values:
             retVal.append((row[0],row[-1]))
     return retVal
+    '''
+    USERNAME = 'bdumont@chenega.com'
+    PASSWORD = 'Swimmertwin7'
+    my_jira = JIRA('https://chenegads.atlassian.net', auth=(USERNAME, PASSWORD))
+    issue = my_jira.search_issues('project=MR AND Key = "' + key + '"', maxResults=False)[0]
+    return(issue.fields.customfield_10052.splitlines())
