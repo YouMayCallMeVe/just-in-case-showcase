@@ -2,24 +2,21 @@ from flask import Flask, request
 import json
 import googleExport
 import addToPatchSelenium
+import os
+import sys
 
 app = Flask(__name__)
 
 @app.route('/',methods=['POST'])
 def foo():
-  name = 'lock.txt'
-  while(os.path.isfile(name)):
-      time.sleep(10)
-  f = open(name,'w')
-  f.write('locked')
-  f.close()
   data = json.loads(request.data)
   emailAddress = data["user"]["emailAddress"]
   issue = data["issue"]["key"]
   itemsToAdd = googleExport.getValues(issue)
-  issue = "MR-1794"
+  #print(itemsToAdd, file=sys.stdout)
   addToPatchSelenium.run(itemsToAdd, issue, emailAddress)
-  os.remove(name)
-
+  #print(request.data)
+  return '', 200
+   
 if __name__ == '__main__':
-   app.run(processes=4)
+   app.run(host='0.0.0.0', port=80, threaded=True)

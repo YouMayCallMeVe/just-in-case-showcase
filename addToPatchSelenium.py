@@ -14,7 +14,7 @@ def waitForLoadId(itemId, driver):
   DELAY = 60
   try:
       myElem = WebDriverWait(driver, DELAY).until(EC.presence_of_element_located((By.ID, itemId)))
-      print("Page is ready!")
+      #print("Page is ready!")
   except TimeoutException:
       print("Loading took too much time!")
       sys.exit(1)
@@ -23,16 +23,16 @@ def waitForLoadXPATH(path, driver):
   DELAY = 60
   try:
       myElem = WebDriverWait(driver, DELAY).until(EC.presence_of_element_located((By.XPATH, path)))
-      print("Page is ready!")
+      #print("Page is ready!")
   except TimeoutException:
       print("Loading took too much time!")
       sys.exit(1)
       
 def waitForLoadClass(path, driver):
-  DELAY = 60
+  DELAY = 120
   try:
       myElem = WebDriverWait(driver, DELAY).until(EC.presence_of_element_located((By.CLASS_NAME, path)))
-      print("Page is ready!")
+      #print("Page is ready!")
   except TimeoutException:
       print("Loading took too much time!")
       sys.exit(1)
@@ -110,7 +110,7 @@ def run(items, issue, email):
   close = driver.find_element_by_xpath('//*[contains(text(), "Close")]')
   link = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div/div/div/div[1]/div[2]/div/p/a')
   url = link.get_attribute("href")
-  print(url)
+  #print(url, email)
   #driver.get(url)
   time.sleep(10)
   close.click()
@@ -121,6 +121,7 @@ def run(items, issue, email):
   waitForLoadXPATH('//*[contains(text(), "Clear Patch Contents")]', driver)
   clear = driver.find_element_by_xpath('//*[contains(text(), "Clear Patch Contents")]')
   clear.click()
+  driver.close()
 
   # SEND EMAIL TO DEVELOPER
   TO = email
@@ -143,7 +144,7 @@ def run(items, issue, email):
 
   try:
       server.sendmail(gmail_sender, [TO], BODY)
-      print ('email sent')
+      #print ('email sent')
   except:
       print ('error sending mail')
 

@@ -3,6 +3,7 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 from jira import JIRA
+import sys
 
 # If modifying these scopes, delete the file token.json.
 def getValues(key):
@@ -41,5 +42,7 @@ def getValues(key):
     USERNAME = 'bdumont@chenega.com'
     PASSWORD = 'Swimmertwin7'
     my_jira = JIRA('https://chenegads.atlassian.net', auth=(USERNAME, PASSWORD))
+    #print(my_jira.search_issues('project=MR AND Key = "' + key + '"', maxResults=False), file=sys.stdout)
     issue = my_jira.search_issues('project=MR AND Key = "' + key + '"', maxResults=False)[0]
+    #print(issue.fields.customfield_10052)
     return(issue.fields.customfield_10052.splitlines())

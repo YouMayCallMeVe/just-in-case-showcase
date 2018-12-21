@@ -2,6 +2,7 @@ import json
 import googleExport
 import addToPatchSelenium
 import os.path
+import smtplib
 
 def js_r(filename):
    with open(filename) as f_in:
@@ -21,3 +22,4 @@ if __name__ == "__main__":
     issue = "MR-1588"
     addToPatchSelenium.run(itemsToAdd, issue, emailAddress)
     os.remove(name)
+	
